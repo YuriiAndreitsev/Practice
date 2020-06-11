@@ -1,0 +1,9 @@
+package com.ua.controller;
+
+import org.springframework.stereotype.Controller;
+
+@InstructorController
+public class Controller {
+
+	
+}

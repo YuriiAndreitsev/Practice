@@ -1,0 +1,13 @@
+package com.ua.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class InstructorController {
+
+	@GetMapping("/")
+	public String getIndex () {
+		return "index";
+	}
+}

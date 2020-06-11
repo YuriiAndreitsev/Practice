@@ -1,0 +1,51 @@
+package com.ua.controller;
+
+import javax.persistence.EntityManagerFactory;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ua.entity.Instructor;
+import com.ua.entity.InstructorDetail;
+
+@Controller
+public class InstructorController {
+
+	@Autowired
+	private EntityManagerFactory entityManagerFactory;
+
+	public Session getSession() {
+		SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+		return sessionFactory.openSession();
+	}
+
+	@GetMapping("/")
+	public String getIndex(Model model, @RequestParam int id) {
+
+		Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
+		try {
+			session.beginTransaction();
+
+//			Instructor instructor = new Instructor("john", "dobkins", "jd@gmail.com");
+//			instructor.setInstructorDetail(new InstructorDetail("www.youtube.com/jd/videos", "luv2code"));
+//			session.save(instructor);
+
+			InstructorDetail insDet = session.get(InstructorDetail.class, id);
+			session.delete(insDet);
+			System.out.println("DELETED " + insDet.getInstructor());
+//			model.addAttribute("ins", insDet.getInstructor());
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return "index";
+	}
+}

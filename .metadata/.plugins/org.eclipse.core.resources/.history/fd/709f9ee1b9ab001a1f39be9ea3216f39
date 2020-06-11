@@ -1,0 +1,4 @@
+spring.datasource.url=jdbc:mysql://localhost/hibernate-practice
+spring.datasource.username=root
+spring.datasource.password=
+spring.jpa.database-platform=spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect

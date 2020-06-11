@@ -1,0 +1,5 @@
+package com.ua.entity;
+
+public class Course {
+
+}

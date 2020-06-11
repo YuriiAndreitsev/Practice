@@ -1,0 +1,23 @@
+package com.ua;
+
+import javax.persistence.EntityManagerFactory;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class BiDirectionalTest {
+	@Autowired
+	static EntityManagerFactory emf;
+
+	public Session getSession() {
+		SessionFactory sf = emf.unwrap(SessionFactory.class);
+		return sf.openSession();
+	}
+
+	public static void main(String[] args) {
+
+		Session session = 
+	}
+
+}
